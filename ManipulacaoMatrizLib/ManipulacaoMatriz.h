@@ -41,4 +41,14 @@ Matriz* AtribuirMatriz(int linhas, int colunas, Elemento* inicio);
 /// <returns>Elemento início da matriz</returns>
 Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha);
 
+/// <summary>
+/// Função altera o número inteiro do elemento na matriz dado as coordenadas
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="coluna">Coluna selecionada</param>
+/// <param name="linha">Linha selecionada</param>
+/// <param name="novoInteiro">Novo número</param>
+/// <returns>Endereço do elemento alterado</returns>
+Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro);
+
 

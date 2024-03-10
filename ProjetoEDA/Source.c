@@ -13,6 +13,8 @@
 
 int main() {
 	Matriz* matriz = CarregarMatriz("matriz.txt");
+	Elemento* elemento = AlterarElemento(matriz, 1, 1, 44);
+
 	LibertarMemoria(matriz);
 	return 0;
 }

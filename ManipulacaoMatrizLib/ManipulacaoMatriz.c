@@ -94,6 +94,102 @@ Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha) {
     return inicio;
 }
 
+/// <summary>
+/// Função altera o número inteiro do elemento na matriz dado as coordenadas
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="coluna">Coluna selecionada</param>
+/// <param name="linha">Linha selecionada</param>
+/// <param name="novoInteiro">Novo número</param>
+/// <returns>Endereço do elemento alterado</returns>
+Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro) {
+    if (matriz == NULL) return NULL; //Se a matriz é nula
+    //Verifica se as coordenadas dadas não passam do limite da matriz na memória
+    if (matriz->colunas < coluna || matriz->linhas < linha) {
+        printf("Limite de linhas ou colunas excedido, verifique se deu a coordenada correta.\n");
+        return NULL;
+    }
+    Elemento* aux = matriz->inicio;
+    //Percorre a matriz por linhas
+    for (int i = 0; i < linha-1; i++) {
+        aux = aux->proxlinha;
+    }
+    //Percorre as colunas da linha
+    for (int i = 0; i < coluna-1; i++) {
+        aux = aux->prox;
+    }
+    //Altera o número inteiro do elemento
+    aux->inteiro = novoInteiro;
+    return aux;
+}
+
+//REVER
+void AdicionarLinhaColuna(Matriz* matriz, bool adicionarLinha, int posicao, int* valores[]) {
+    // Verifica se a posição é válida
+    if (posicao < 0 || (adicionarLinha && posicao > matriz->linhas) || (!adicionarLinha && posicao > matriz->colunas)) {
+        return;
+    }
+
+    Elemento* novoElemento = NULL;
+    Elemento* aux = NULL;
+
+    if (adicionarLinha) {
+        // Cria um novo elemento para a linha
+        novoElemento = CriarElemento(0);
+        if (novoElemento == NULL) {
+            return;
+        }
+
+        // Insere o novo elemento na matriz
+        matriz->inicio = InserirElemento(matriz->inicio, novoElemento, true);
+
+        // Ajusta o número de linhas da matriz
+        matriz->linhas++;
+
+        // Insere o novo elemento na posição indicada
+        for (int i = 0; i < posicao; i++) {
+            aux = novoElemento;
+            novoElemento = novoElemento->proxlinha;
+        }
+
+        // Se a posição não for a última, conecta o novo elemento ao próximo
+        if (posicao < matriz->colunas) {
+            aux->proxlinha = novoElemento->proxlinha;
+        }
+    }
+    else {
+        // Cria um novo elemento para a coluna
+        for (int i = 0; i < matriz->linhas; i++) {
+            novoElemento = CriarElemento(0);
+            if (novoElemento == NULL) {
+                return;
+            }
+
+            // Insere o novo elemento na matriz
+            matriz->inicio = InserirElemento(matriz->inicio, novoElemento, false);
+
+            // Se não for a primeira iteração, conecta o novo elemento ao anterior
+            if (i > 0) {
+                aux->prox = novoElemento;
+            }
+
+            aux = novoElemento;
+        }
+
+        // Ajusta o número de colunas da matriz
+        matriz->colunas++;
+
+        // Insere o novo elemento na posição indicada
+        for (int i = 0; i < posicao; i++) {
+            aux = aux->prox;
+        }
+
+        // Conecta o novo elemento ao próximo elemento da coluna
+        novoElemento->prox = aux->prox;
+    }
+}
+
+//REVER
 void RemoverLinha(Matriz* matriz, int linha) {
     // Verificação de parâmetros
     if (matriz == NULL || linha < 0 || linha >= matriz->linhas) {
