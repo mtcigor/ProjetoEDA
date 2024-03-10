@@ -1,8 +1,8 @@
 /*****************************************************************//**
  * \file   ManipulacaoMatriz.h
- * \brief  
+ * \brief  Header com as funções de manipulação de matrizes
  * 
- * \author mtcig
+ * \author Igor a27977@alunos.ipca.pt
  * \date   March 2024
  *********************************************************************/
 
@@ -38,7 +38,7 @@ Matriz* AtribuirMatriz(int linhas, int colunas, Elemento* inicio);
 /// <param name="inicio">Início da matriz</param>
 /// <param name="nova">Novo elemento para inserir</param>
 /// <param name="novaLinha">Váriavel de controlo se o elemento é de uma nova linha</param>
-/// <returns>Início da matriz</returns>
+/// <returns>Elemento início da matriz</returns>
 Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha);
 
 

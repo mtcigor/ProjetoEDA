@@ -1,8 +1,8 @@
 /*****************************************************************//**
  * \file   ManipulacaoMatriz.c
- * \brief  
+ * \brief  Funções para manipular a matriz
  * 
- * \author mtcig
+ * \author Igor a27977@alunos.ipca.pt
  * \date   March 2024
  *********************************************************************/
 
@@ -19,12 +19,15 @@
 /// <param name="inicio">Endereço do início da matriz</param>
 void LibertarMemoria(Matriz* matriz) {
     Elemento* aux = matriz->inicio;
+    //Liberta a memória da estrutura de dados
     free(matriz);
+    //Percorre pela matriz e liberta a memória de cada elemento
     while (aux->prox != NULL) {
         Elemento* temp = aux;
         aux = aux->prox;
         free(temp);
     }
+    //Liberta a memória do elemento auxiliar da função
     free(aux);
 }
 
@@ -34,9 +37,10 @@ void LibertarMemoria(Matriz* matriz) {
 /// <param name="inteiro">Número inteiro para o elemento da matriz</param>
 /// <returns>Endereço do elemento na memória</returns>
 Elemento* CriarElemento(int inteiro) {
+    //Reserva espaço na memória para um elemento
     Elemento* aux = (Elemento*)malloc(sizeof(Elemento));
-    if (aux == NULL) return NULL;
-    aux->inteiro = inteiro;
+    if (aux == NULL) return NULL; //Devolve NULL se não reservou
+    aux->inteiro = inteiro; //Atribui o número inteiro do elemento
     aux->prox = NULL;
     aux->proxlinha = NULL;
     return aux;
@@ -50,8 +54,10 @@ Elemento* CriarElemento(int inteiro) {
 /// <param name="inicio">Endereço do primeiro elemento da matriz</param>
 /// <returns>Endereço dos dados da matriz</returns>
 Matriz* AtribuirMatriz(int linhas, int colunas, Elemento* inicio) {
+    //Reserva espaço na memória para a matriz
     Matriz* aux = (Matriz*)malloc(sizeof(Matriz));
     if (aux == NULL) return NULL;
+    //Preenche os campos da matriz
     aux->linhas = linhas;
     aux->colunas = colunas;
     aux->inicio = inicio;
@@ -64,16 +70,19 @@ Matriz* AtribuirMatriz(int linhas, int colunas, Elemento* inicio) {
 /// <param name="inicio">Início da matriz</param>
 /// <param name="nova">Novo elemento para inserir</param>
 /// <param name="novaLinha">Váriavel de controlo se o elemento é de uma nova linha</param>
-/// <returns>Início da matriz</returns>
+/// <returns>Elemento início da matriz</returns>
 Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha) {
     if (nova == NULL) return inicio;
+    //Devole o endereço do elemento nova se o elemento incio é nulo
     if (inicio == NULL) inicio = nova;
     else {
         Elemento* aux = inicio;
+        //Percorre a matriz(tipo lista) até chegar ao valor nulo
         while (aux->prox != NULL) {
             aux = aux->prox;
         }
         aux->prox = nova;
+        //Se o primeiro elemento é de uma nova linha vai inserir o endereço do primeiro elemento á linha anterior
         if (novaLinha == true) {
             Elemento* aux2 = inicio;
             while (aux2->proxlinha != NULL) {
