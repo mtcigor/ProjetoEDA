@@ -15,7 +15,9 @@ int main() {
 	Matriz* matriz = CarregarMatriz("matriz.txt");
 	Elemento* elemento = AlterarElemento(matriz, 1, 1, 44);
 	int arr[] = { 1, 2, 3, 4, 5 };
-	AdicionarLinha(matriz, arr, tamanho);
+	int tamanho = 4;
+	AdicionarColuna(matriz, arr, tamanho);
+	RemoverLinha(matriz, 2);
 	LibertarMemoria(matriz);
 	return 0;
 }

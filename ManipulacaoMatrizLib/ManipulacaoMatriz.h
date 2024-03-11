@@ -65,4 +65,4 @@ void AdicionarLinha(Matriz* matriz, int valores[], int tamanho);
 /// <param name="valores">Array com os valores para adicionar na matriz</param>
 void AdicionarColuna(Matriz* matriz, int valores[], int tamanho);
 
-
+void RemoverLinha(Matriz* matriz, int linha);
