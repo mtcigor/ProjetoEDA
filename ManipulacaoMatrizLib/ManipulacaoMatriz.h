@@ -51,4 +51,18 @@ Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha);
 /// <returns>Endereço do elemento alterado</returns>
 Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro);
 
+/// <summary>
+/// Função para acrescentar uma nova linha á matriz
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="valores">Array com os valores para adicionar na matriz</param>
+void AdicionarLinha(Matriz* matriz, int valores[], int tamanho);
+
+/// <summary>
+/// Função para acrescentar uma nova coluna á matriz
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="valores">Array com os valores para adicionar na matriz</param>
+void AdicionarColuna(Matriz* matriz, int valores[], int tamanho);
+
 

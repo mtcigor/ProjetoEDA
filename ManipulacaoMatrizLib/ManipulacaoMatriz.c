@@ -39,7 +39,10 @@ void LibertarMemoria(Matriz* matriz) {
 Elemento* CriarElemento(int inteiro) {
     //Reserva espaço na memória para um elemento
     Elemento* aux = (Elemento*)malloc(sizeof(Elemento));
-    if (aux == NULL) return NULL; //Devolve NULL se não reservou
+    if (aux == NULL) {
+        printf("ERRO NA RESERVA DE MEMÓRIA DO ELEMENTO");
+        return NULL; //Devolve NULL se não reservou
+    }   
     aux->inteiro = inteiro; //Atribui o número inteiro do elemento
     aux->prox = NULL;
     aux->proxlinha = NULL;
@@ -123,70 +126,63 @@ Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro
     return aux;
 }
 
-//REVER
-void AdicionarLinhaColuna(Matriz* matriz, bool adicionarLinha, int posicao, int* valores[]) {
-    // Verifica se a posição é válida
-    if (posicao < 0 || (adicionarLinha && posicao > matriz->linhas) || (!adicionarLinha && posicao > matriz->colunas)) {
-        return;
-    }
+/// <summary>
+/// Função para acrescentar uma nova linha á matriz
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="valores">Array com os valores para adicionar na matriz</param>
+void AdicionarLinha(Matriz* matriz, int valores[], int tamanho) {
 
     Elemento* novoElemento = NULL;
     Elemento* aux = NULL;
 
-    if (adicionarLinha) {
-        // Cria um novo elemento para a linha
-        novoElemento = CriarElemento(0);
-        if (novoElemento == NULL) {
-            return;
-        }
-
-        // Insere o novo elemento na matriz
-        matriz->inicio = InserirElemento(matriz->inicio, novoElemento, true);
-
-        // Ajusta o número de linhas da matriz
-        matriz->linhas++;
-
-        // Insere o novo elemento na posição indicada
-        for (int i = 0; i < posicao; i++) {
-            aux = novoElemento;
-            novoElemento = novoElemento->proxlinha;
-        }
-
-        // Se a posição não for a última, conecta o novo elemento ao próximo
-        if (posicao < matriz->colunas) {
-            aux->proxlinha = novoElemento->proxlinha;
-        }
+    if (tamanho < matriz->colunas || tamanho > matriz->colunas) {
+        printf("ERRO, ARRAY DE VALORES MENOR OU MAIOR QUE A QUANTIDADE DE COLUNAS NA MATRIZ");
+        return;
     }
-    else {
-        // Cria um novo elemento para a coluna
-        for (int i = 0; i < matriz->linhas; i++) {
-            novoElemento = CriarElemento(0);
-            if (novoElemento == NULL) {
-                return;
-            }
 
-            // Insere o novo elemento na matriz
-            matriz->inicio = InserirElemento(matriz->inicio, novoElemento, false);
+    // Cria os elementos da linha
+    for (int i = 0; i < matriz->colunas; i++) {
+        novoElemento = CriarElemento(valores[i]);
+        if (novoElemento == NULL) return;
 
-            // Se não for a primeira iteração, conecta o novo elemento ao anterior
-            if (i > 0) {
-                aux->prox = novoElemento;
-            }
+        // Se não for o primeiro elemento da linha, conecta o novo elemento ao anterior
+        if (i = 0)  matriz->inicio = aux = InserirElemento(matriz->inicio, novoElemento, true);
+        else matriz->inicio = aux = InserirElemento(matriz->inicio, novoElemento, false);
 
-            aux = novoElemento;
-        }
+    }
 
-        // Ajusta o número de colunas da matriz
-        matriz->colunas++;
+    // Ajusta o número de linhas da matriz
+    matriz->linhas++;
+}
 
-        // Insere o novo elemento na posição indicada
-        for (int i = 0; i < posicao; i++) {
+/// <summary>
+/// Função para acrescentar uma nova coluna á matriz
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="valores">Array com os valores para adicionar na matriz</param>
+void AdicionarColuna(Matriz* matriz, int valores[], int tamanho){
+    Elemento* novoElemento = NULL;
+    Elemento* aux = matriz->inicio;
+    Elemento* controloLinha = matriz->inicio;
+
+    if (tamanho < matriz->linhas || tamanho > matriz->linhas) {
+        printf("ERRO, ARRAY DE VALORES MENOR OU MAIOR QUE A QUANTIDADE DE LINHAS NA MATRIZ");
+        return;
+    }
+
+    for (int i = 0; i < matriz->linhas-1; i++) {
+        novoElemento = CriarElemento(valores[i]);
+        if (novoElemento == NULL) return;
+
+        for (int i = 0; i < matriz->colunas - 1; i++) {
             aux = aux->prox;
         }
-
-        // Conecta o novo elemento ao próximo elemento da coluna
-        novoElemento->prox = aux->prox;
+        aux->prox = novoElemento;
+        controloLinha = controloLinha->proxlinha;
+        aux = controloLinha;
     }
+    matriz->colunas++;
 }
 
 //REVER
