@@ -1,12 +1,13 @@
 /*****************************************************************//**
  * \file   ManipulacaoMatriz.h
- * \brief  Header com as funções de manipulação de matrizes
+ * \brief  Header com as funções da biblioteca ManipulacaoMatriz
  * 
  * \author Igor a27977@alunos.ipca.pt
  * \date   March 2024
  *********************************************************************/
 
 #pragma once
+
 #include "DadosFixos.h"
 #include <stdbool.h>
 
@@ -45,8 +46,8 @@ Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha);
 /// Função altera o número inteiro do elemento na matriz dado as coordenadas
 /// </summary>
 /// <param name="matriz">Endereço da matriz</param>
-/// <param name="coluna">Coluna selecionada</param>
-/// <param name="linha">Linha selecionada</param>
+/// <param name="coluna">Coluna do elemento</param>
+/// <param name="linha">Linha do elemento</param>
 /// <param name="novoInteiro">Novo número</param>
 /// <returns>Endereço do elemento alterado</returns>
 Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro);

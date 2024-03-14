@@ -27,7 +27,7 @@ Matriz* CarregarMatriz(char nomeFicheiro[TAMANHO_NOME_FICHEIRO]) {
     //Inicializar o ficheiro
     FILE* txtApontador = fopen(nomeFicheiro, "r");
     if (txtApontador == NULL) {
-        printf("ERRO NA LEITURA DO FICHEIRO\n");
+        printf("Erro na leitura do ficheiro.\n");
         return NULL;
     }
 

@@ -76,7 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\ManipulacaoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\CarregamentoMatrizLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\ManipulacaoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\CarregamentoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\MostrarMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\OperacoesMatrizLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,7 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\ManipulacaoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\CarregamentoMatrizLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\ManipulacaoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\CarregamentoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\MostrarMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\OperacoesMatrizLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\ManipulacaoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\CarregamentoMatrizLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\ManipulacaoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\CarregamentoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\MostrarMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\OperacoesMatrizLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\ManipulacaoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\CarregamentoMatrizLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\ManipulacaoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\CarregamentoMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\MostrarMatrizLib;C:\Users\mtcig\OneDrive - Instituto Politécnico do Cávado e do Ave\2º Semestre\Estruturas de Dados Avançadas\Trabalho Prático\Parte I\ProjetoEDA\OperacoesMatrizLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,6 +139,12 @@
     </ProjectReference>
     <ProjectReference Include="..\ManipulacaoMatrizLib\ManipulacaoMatrizLib.vcxproj">
       <Project>{69a50fe9-38d3-448d-a46a-81622e3504ab}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\MostrarMatrizLib\MostrarMatrizLib.vcxproj">
+      <Project>{80443d73-af38-4f97-b9c3-49a936a7d5e5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\OperacoesMatrizLib\OperacoesMatrizLib.vcxproj">
+      <Project>{458cd683-9b17-4463-b6fa-d308e6fbf93f}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

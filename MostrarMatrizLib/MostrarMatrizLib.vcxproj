@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{69a50fe9-38d3-448d-a46a-81622e3504ab}</ProjectGuid>
-    <RootNamespace>ManipulacaoMatrizLib</RootNamespace>
+    <ProjectGuid>{80443d73-af38-4f97-b9c3-49a936a7d5e5}</ProjectGuid>
+    <RootNamespace>MostrarMatrizLib</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -135,10 +135,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ManipulacaoMatriz.c" />
+    <ClCompile Include="MostrarMatriz.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ManipulacaoMatriz.h" />
+    <ClInclude Include="MostrarMatriz.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OperacoesMatrizLib\OperacoesMatrizLib.vcxproj">

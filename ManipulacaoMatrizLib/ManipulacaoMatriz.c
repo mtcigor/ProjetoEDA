@@ -1,6 +1,6 @@
 /*****************************************************************//**
  * \file   ManipulacaoMatriz.c
- * \brief  Funções para manipular a matriz
+ * \brief  Biblioteca com várias funções para manipular a matriz
  * 
  * \author Igor a27977@alunos.ipca.pt
  * \date   March 2024
@@ -9,6 +9,7 @@
 #pragma warning (disable: 4996)
 
 #include "DadosFixos.h"
+#include "OperacoesMatriz.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -18,6 +19,10 @@
 /// </summary>
 /// <param name="inicio">Endereço do início da matriz</param>
 void LibertarMemoria(Matriz* matriz) {
+    if (matriz == NULL) {
+        printf("Endereço da matriz inválido.\n");
+        return;
+    }
     Elemento* aux = matriz->inicio;
     //Liberta a memória da estrutura de dados
     free(matriz);
@@ -40,7 +45,7 @@ Elemento* CriarElemento(int inteiro) {
     //Reserva espaço na memória para um elemento
     Elemento* aux = (Elemento*)malloc(sizeof(Elemento));
     if (aux == NULL) {
-        printf("Erro ao reservear a memória.");
+        printf("Erro ao reservar a memória.");
         return NULL; //Devolve NULL se não reservou
     }   
     aux->inteiro = inteiro; //Atribui o número inteiro do elemento
@@ -101,31 +106,19 @@ Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha) {
 /// Função altera o número inteiro do elemento na matriz dado as coordenadas
 /// </summary>
 /// <param name="matriz">Endereço da matriz</param>
-/// <param name="coluna">Coluna selecionada</param>
-/// <param name="linha">Linha selecionada</param>
+/// <param name="coluna">Coluna do elemento</param>
+/// <param name="linha">Linha do elemento</param>
 /// <param name="novoInteiro">Novo número</param>
 /// <returns>Endereço do elemento alterado</returns>
 Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro) {
-    if (matriz == NULL) return NULL; //Se a matriz é nula
-    //Verifica se as coordenadas dadas não passam do limite da matriz na memória
-    if (matriz->colunas < coluna || matriz->linhas < linha) {
-        printf("Limite de linhas ou colunas excedido ou um dos valores, verifique se deu a coordenada correta.\n");
+    Elemento* aux = ObterElemento(matriz, linha, coluna);
+    //Altera o número inteiro do elemento
+    if (aux == NULL) {
         return NULL;
     }
-    Elemento* aux = matriz->inicio;
-    //Percorre a matriz por linhas
-    for (int i = 0; i < linha-1; i++) {
-        aux = aux->proxlinha;
-    }
-    //Percorre as colunas da linha
-    for (int i = 0; i < coluna-1; i++) {
-        aux = aux->prox;
-    }
-    //Altera o número inteiro do elemento
     aux->inteiro = novoInteiro;
     return aux;
 }
-
 
 /// <summary>
 /// Função para adicionar uma linha dado uma posição e um array de valores
@@ -137,7 +130,7 @@ Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro
 void AdicionarLinha(Matriz* matriz, int posicao, int valores[], int tamanho) {
     //Verificação de parâmetros
     if (matriz == NULL || posicao < 0 || posicao > matriz->linhas || tamanho <= 0 || tamanho > matriz->colunas) {
-        printf("Erro na posição ou tamanho inválido.\n");
+        printf("Erro: Parâmetros inválidos.\n");
         return;
     }
 
@@ -267,7 +260,7 @@ void AdicionarColunas(Matriz* matriz, int posicao, int valores[], int tamanho) {
 void RemoverLinha(Matriz* matriz, int linha) {
     //Verificação dos parâmetros
     if (matriz == NULL || linha < 0 || linha >= matriz->linhas) {
-        printf("ERRO: Parâmetros inválidos.\n");
+        printf("Erro: Parâmetros inválidos.\n");
         return;
     }
 
@@ -321,7 +314,7 @@ void RemoverLinha(Matriz* matriz, int linha) {
 void RemoverColuna(Matriz* matriz, int posicao) {
     // Verificação de parâmetros
     if (matriz == NULL || posicao < 0 || posicao >= matriz->colunas) {
-        printf("ERRO: Parâmetros inválidos.\n");
+        printf("Erro: Parâmetros inválidos.\n");
         return;
     }
 

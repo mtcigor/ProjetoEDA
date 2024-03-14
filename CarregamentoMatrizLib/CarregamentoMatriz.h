@@ -5,6 +5,7 @@
  * \author Igor a27977@alunos.ipca.pt
  * \date   March 2024
  *********************************************************************/
+
 #pragma once
 
 #include "DadosFixos.h"
