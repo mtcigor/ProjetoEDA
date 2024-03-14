@@ -40,7 +40,7 @@ Elemento* CriarElemento(int inteiro) {
     //Reserva espaço na memória para um elemento
     Elemento* aux = (Elemento*)malloc(sizeof(Elemento));
     if (aux == NULL) {
-        printf("ERRO NA RESERVA DE MEMÓRIA DO ELEMENTO");
+        printf("Erro ao reservear a memória.");
         return NULL; //Devolve NULL se não reservou
     }   
     aux->inteiro = inteiro; //Atribui o número inteiro do elemento
@@ -76,7 +76,7 @@ Matriz* AtribuirMatriz(int linhas, int colunas, Elemento* inicio) {
 /// <returns>Elemento início da matriz</returns>
 Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha) {
     if (nova == NULL) return inicio;
-    //Devole o endereço do elemento nova se o elemento incio é nulo
+    //Devolve o endereço do elemento nova se o elemento início é nulo
     if (inicio == NULL) inicio = nova;
     else {
         Elemento* aux = inicio;
@@ -109,7 +109,7 @@ Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro
     if (matriz == NULL) return NULL; //Se a matriz é nula
     //Verifica se as coordenadas dadas não passam do limite da matriz na memória
     if (matriz->colunas < coluna || matriz->linhas < linha) {
-        printf("Limite de linhas ou colunas excedido, verifique se deu a coordenada correta.\n");
+        printf("Limite de linhas ou colunas excedido ou um dos valores, verifique se deu a coordenada correta.\n");
         return NULL;
     }
     Elemento* aux = matriz->inicio;
@@ -126,93 +126,172 @@ Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro
     return aux;
 }
 
+
 /// <summary>
-/// Função para acrescentar uma nova linha á matriz
+/// Função para adicionar uma linha dado uma posição e um array de valores
 /// </summary>
 /// <param name="matriz">Endereço da matriz</param>
+/// <param name="posicao">Número da posição a adicionar a nova linha</param>
 /// <param name="valores">Array com os valores para adicionar na matriz</param>
-void AdicionarLinha(Matriz* matriz, int valores[], int tamanho) {
-    if (tamanho < matriz->colunas || tamanho > matriz->colunas) {
-        printf("ERRO, ARRAY DE VALORES MENOR OU MAIOR QUE A QUANTIDADE DE COLUNAS NA MATRIZ\n");
+/// <param name="tamanho">Tamanho do array</param>
+void AdicionarLinha(Matriz* matriz, int posicao, int valores[], int tamanho) {
+    //Verificação de parâmetros
+    if (matriz == NULL || posicao < 0 || posicao > matriz->linhas || tamanho <= 0 || tamanho > matriz->colunas) {
+        printf("Erro na posição ou tamanho inválido.\n");
         return;
     }
 
+    //Cria o novo elemento da linha
+    Elemento* primeiroNovoElemento = CriarElemento(valores[0]);
     Elemento* novoElemento = NULL;
-    Elemento* aux = NULL;
-
-    // Cria os elementos da linha
-    for (int i = 0; i < matriz->colunas; i++) {
+    if (primeiroNovoElemento == NULL) {
+        printf("Erro na criação do elemento.\n");
+        return;
+    }
+    Elemento* linhaNova = primeiroNovoElemento;
+    for (int i = 1; i < tamanho; i++) {
         novoElemento = CriarElemento(valores[i]);
-        if (novoElemento == NULL) return;
-
-        // Se não for o primeiro elemento da linha, conecta o novo elemento ao anterior
-        if (i = 0)  matriz->inicio = aux = InserirElemento(matriz->inicio, novoElemento, true);
-        else matriz->inicio = aux = InserirElemento(matriz->inicio, novoElemento, false);
-
+        if (novoElemento == NULL) {
+            printf("Erro na criação do elemento.\n");
+            return;
+        }
+        while (linhaNova->prox != NULL) {
+            linhaNova = linhaNova->prox;
+        }
+        linhaNova->prox = novoElemento;
     }
 
-    // Ajusta o número de linhas da matriz
+    //Insere a nova linha na matriz
+    Elemento* aux = matriz->inicio;
+    for (int i = 0; i < posicao-1; i++) {
+        aux = aux->proxlinha;
+    }
+
+    //Se a linha a ser inserida for a primeira
+    if (posicao == 0) {
+        primeiroNovoElemento->proxlinha = matriz->inicio;
+        matriz->inicio = primeiroNovoElemento;
+        novoElemento->prox = aux;
+    }
+    else {
+        primeiroNovoElemento->proxlinha = aux->proxlinha;
+        aux->proxlinha = primeiroNovoElemento;
+        novoElemento->prox = primeiroNovoElemento->proxlinha;
+    }
+
+    //Atualiza o número de linhas da matriz
     matriz->linhas++;
 }
 
 /// <summary>
-/// Função para acrescentar uma nova coluna á matriz
+/// Função para adicionar uma coluna dado uma posição e um array de valores
 /// </summary>
 /// <param name="matriz">Endereço da matriz</param>
+/// <param name="posicao">Número da posição a adicionar a nova linha</param>
 /// <param name="valores">Array com os valores para adicionar na matriz</param>
-void AdicionarColuna(Matriz* matriz, int valores[], int tamanho){
-    if (tamanho < matriz->linhas || tamanho > matriz->linhas) {
-        printf("ERRO, ARRAY DE VALORES MENOR OU MAIOR QUE A QUANTIDADE DE LINHAS NA MATRIZ\n");
+/// <param name="tamanho">Tamanho do array</param>
+void AdicionarColunas(Matriz* matriz, int posicao, int valores[], int tamanho) {
+    //Verificação de parâmetros
+    if (matriz == NULL || posicao < 0 || posicao > matriz->colunas || tamanho <= 0 || tamanho > matriz->linhas || tamanho < matriz->linhas) {
+        printf("Erro: Parâmetros inválidos.\n");
         return;
     }
-    Elemento* novoElemento = NULL;
-    Elemento* aux = matriz->inicio;
-    Elemento* controloLinha = matriz->inicio;
-
-    for (int i = 0; i < matriz->linhas-1; i++) {
-        novoElemento = CriarElemento(valores[i]);
-        if (novoElemento == NULL) return;
-        for (int i = 0; i < matriz->colunas - 1; i++) {
-            aux = aux->prox;
+    //Inicializar os elementos
+    Elemento* novoElemento = NULL; //Novo elemento a ser inserido
+    Elemento* aux = matriz->inicio; //Elemento que guarda a linha a qual o novo elemento será inserido
+    Elemento* aux2 = NULL; //Elemento com a coluna a qual será inserido o novo elemento
+    Elemento* anterior = NULL; //Guardar o elemento novo para a próxima interação com outro novo elemento
+    Elemento* linhaAnterior = NULL; //Elemento com a primeira posição da linha anterior
+    Elemento* anteriorElemento = matriz->inicio; //Elemento anterior se o elemento novo está a ser adicionado no "meio" da matriz
+    int n = -1; //Inteiro para controlar a interação de linhas
+    bool inicio = true;
+    
+    for (int i = 0; i <= matriz->colunas-1; i++) {
+        //Se a posição é 0 e não é o início
+        if (inicio != true && posicao == 0) {
+            aux = novoElemento->proxlinha;
         }
-        aux->prox = novoElemento;
-        controloLinha = controloLinha->proxlinha;
-        aux = controloLinha;
+        else {
+            if (inicio != true) aux = aux->proxlinha;
+        }
+        n++; 
+        aux2 = aux;
+        novoElemento = CriarElemento(valores[n]); //Novo elemento da array dada
+        //Ciclo for para encontrar o elemento que está na coluna pedida usando a variável posição
+        for (int k = 0; k < posicao; k++) {
+            aux2 = aux2->prox;
+        }
+        novoElemento->prox = aux2;
+        //Se a posicao for 0, o campo proxlinha do novoElemento obtêm o endereço da próxima linha
+        if(posicao == 0)novoElemento->proxlinha = aux2->proxlinha;
+        //Muda o início da matriz para o novo elemento
+        if (n == 0 && posicao == 0) {
+            matriz->inicio = novoElemento;
+        }
+        /*Se não for a primeira linha e a posição dos elementos a ser inseridos é 0, 
+        o elemento anterior ao novo elemento guarda o endereço do novo elemento*/
+        else if (n != 0 && posicao == 0) {
+            anterior->proxlinha = novoElemento;
+        }
+        //O elemento anterior obtêm o endereço do novo Elemento para ligar a lista
+        if (posicao != 0 && inicio == true) {
+            for (int e = 0; e < posicao - 1; e++) {
+                anteriorElemento = anteriorElemento->prox;
+            }
+            anteriorElemento->prox = novoElemento;
+        }
+        if (inicio != true) {
+            for (int l = 0; l < matriz->colunas; l++) {
+                linhaAnterior = linhaAnterior->prox;
+            }
+            linhaAnterior->prox = novoElemento;
+        }
+        //Remover o endereço proxlinha quando o primeiroElemento da linha é movido
+        if (posicao != matriz->colunas) {
+            aux2->proxlinha = NULL;
+        }
+        anterior = novoElemento;
+        linhaAnterior = novoElemento;
+        inicio = false;
     }
+
+    //Atualiza o número de colunas da matriz
     matriz->colunas++;
 }
 
 /// <summary>
-/// 
+/// Função para remover uma linha selecionada na matriz
 /// </summary>
-/// <param name="matriz"></param>
-/// <param name="linha"></param>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="linha">Número da linha para remover</param>
 void RemoverLinha(Matriz* matriz, int linha) {
-    // Verificação de parâmetros
+    //Verificação dos parâmetros
     if (matriz == NULL || linha < 0 || linha >= matriz->linhas) {
+        printf("ERRO: Parâmetros inválidos.\n");
         return;
     }
 
-    // Ponteiro para o início da linha a remover
+    //Ponteiro para o início da linha a remover
     Elemento* linhaToRemove = matriz->inicio;
-    for (int i = 0; i < linha-1; i++) {
+    for (int i = 0; i < linha; i++) {
         linhaToRemove = linhaToRemove->proxlinha;
     }
-
-    // Ponteiro para o elemento anterior à linha a remover
+    //Ponteiro para o elemento anterior à linha a remover
     Elemento* anterior = NULL;
     Elemento* atual = matriz->inicio;
     while (atual != linhaToRemove) {
         anterior = atual;
         atual = atual->proxlinha;
     }
-
-    // Se a linha a remover for a primeira
-    if (anterior == NULL) matriz->inicio = linhaToRemove->proxlinha;
-    // Linha a remover não é a primeira
-    else anterior->proxlinha = linhaToRemove->proxlinha;
-
-    // Liberar memória da linha removida
+    //Se a linha a remover for a primeira
+    if (anterior == NULL) {
+        matriz->inicio = linhaToRemove->proxlinha;
+        anterior = matriz->inicio;
+    }
+    else {
+        anterior->proxlinha = linhaToRemove->proxlinha;
+    }
+    //Libertar a memória da linha removida
     Elemento* aux = linhaToRemove;
     while (aux != NULL) {
         Elemento* temp = aux;
@@ -220,6 +299,7 @@ void RemoverLinha(Matriz* matriz, int linha) {
         free(temp);
         //Parar o loop se chegou ao fim da linha
         if (matriz->inicio == aux || anterior->proxlinha == aux) break;
+        
     }
     //Liga o ultímo elemento da linha anterior ao primeiro elemento da proxima linha
     if (aux == anterior->proxlinha) {
@@ -231,4 +311,75 @@ void RemoverLinha(Matriz* matriz, int linha) {
     }
     // Atualizar o número de linhas da matriz
     matriz->linhas--;
+}
+
+/// <summary>
+/// Função para remover uma coluna selecionada na matriz
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="posicao">Número da coluna para remover</param>
+void RemoverColuna(Matriz* matriz, int posicao) {
+    // Verificação de parâmetros
+    if (matriz == NULL || posicao < 0 || posicao >= matriz->colunas) {
+        printf("ERRO: Parâmetros inválidos.\n");
+        return;
+    }
+
+    Elemento* colunaToRemove = NULL;
+    Elemento* proxLinha = matriz->inicio->proxlinha;
+    bool inicio = true;
+    //Ciclo para mover de linha a linha
+    for (int l = 0; l < matriz->linhas; l++) {
+        if (inicio == true) {
+            colunaToRemove = matriz->inicio;
+            
+        } 
+        else if (posicao != 0) {
+            colunaToRemove = proxLinha;
+            proxLinha = proxLinha->proxlinha;
+        } 
+        for (int i = 0; i < posicao; i++) {
+            colunaToRemove = colunaToRemove->prox;
+        }
+        // Ponteiro para o elemento anterior à coluna a remover
+        Elemento* anterior = NULL;
+        Elemento* atual = matriz->inicio;
+        while (atual != colunaToRemove) {
+            anterior = atual;
+            atual = atual->prox;
+        }
+        // Se a coluna a remover for a primeira
+        if (anterior == NULL) {
+            matriz->inicio = colunaToRemove->prox;
+            matriz->inicio->proxlinha = colunaToRemove->proxlinha->prox;
+        }
+        else {
+            anterior->prox = colunaToRemove->prox;
+            anterior->proxlinha = colunaToRemove->proxlinha;
+        }
+        // Liberar memória da coluna removida
+        while (colunaToRemove != NULL) {
+            Elemento* temp = colunaToRemove;
+            Elemento* aux = colunaToRemove;
+            if (posicao == 0 && aux != NULL) {
+                for (int c = 0; c < matriz->colunas-1; c++) {
+                    aux = aux->prox;
+                }
+                if(aux->prox != NULL) aux->prox = aux->prox->prox;
+                
+            }
+            colunaToRemove = colunaToRemove->proxlinha;
+            if (colunaToRemove != NULL) {
+                if (colunaToRemove->proxlinha != NULL) {
+                    colunaToRemove->prox->proxlinha = colunaToRemove->proxlinha->prox;
+                }
+            }
+            free(temp);
+        }
+        if (posicao == 0) break;
+        inicio = false;
+    }
+    
+    // Atualizar o número de colunas da matriz
+    matriz->colunas--;
 }

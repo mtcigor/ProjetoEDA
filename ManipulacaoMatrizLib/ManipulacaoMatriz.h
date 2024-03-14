@@ -14,7 +14,7 @@
  /// Função para libertar a memória usada para a matriz
  /// </summary>
  /// <param name="inicio">Endereço do início da matriz</param>
-void LibertarMemoria(Elemento* inicio);
+void LibertarMemoria(Matriz* inicio);
 
 /// <summary>
 /// Função para reservar espaço na memória para um elemento já atribúido um número inteiro
@@ -52,17 +52,33 @@ Elemento* InserirElemento(Elemento* inicio, Elemento* nova, bool novaLinha);
 Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro);
 
 /// <summary>
-/// Função para acrescentar uma nova linha á matriz
+/// Função para adicionar uma linha dado uma posição e um array de valores
 /// </summary>
 /// <param name="matriz">Endereço da matriz</param>
+/// <param name="posicao">Número da posição a adicionar a nova linha</param>
 /// <param name="valores">Array com os valores para adicionar na matriz</param>
-void AdicionarLinha(Matriz* matriz, int valores[], int tamanho);
+/// <param name="tamanho">Tamanho do array</param>
+void AdicionarLinha(Matriz* matriz, int posicao, int valores[], int tamanho);
 
 /// <summary>
-/// Função para acrescentar uma nova coluna á matriz
+/// Função para adicionar uma coluna dado uma posição e um array de valores
 /// </summary>
 /// <param name="matriz">Endereço da matriz</param>
+/// <param name="posicao">Número da posição a adicionar a nova linha</param>
 /// <param name="valores">Array com os valores para adicionar na matriz</param>
-void AdicionarColuna(Matriz* matriz, int valores[], int tamanho);
+/// <param name="tamanho">Tamanho do array</param>
+void AdicionarColunas(Matriz* matriz, int posicao, int valores[], int tamanho);
 
+/// <summary>
+/// Função para remover uma linha selecionada na matriz
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="linha">Número da linha para remover</param>
 void RemoverLinha(Matriz* matriz, int linha);
+
+/// <summary>
+/// Função para remover uma coluna selecionada na matriz
+/// </summary>
+/// <param name="matriz">Endereço da matriz</param>
+/// <param name="posicao">Número da coluna para remover</param>
+void RemoverColuna(Matriz* matriz, int posicao);
