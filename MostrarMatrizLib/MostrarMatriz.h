@@ -1,8 +1,8 @@
 /*****************************************************************//**
  * \file   MostrarMatriz.h
- * \brief  
+ * \brief  Header com as funções da biblioteca MostrarMatriz
  * 
- * \author mtcig
+ * \author Igor a27977@alunos.ipca.pt
  * \date   March 2024
  *********************************************************************/
 

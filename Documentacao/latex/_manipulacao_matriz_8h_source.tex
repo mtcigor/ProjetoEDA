@@ -1,0 +1,29 @@
+\doxysection{Manipulacao\+Matriz.\+h}
+\hypertarget{_manipulacao_matriz_8h_source}{}\label{_manipulacao_matriz_8h_source}\index{ManipulacaoMatrizLib/ManipulacaoMatriz.h@{ManipulacaoMatrizLib/ManipulacaoMatriz.h}}
+\mbox{\hyperlink{_manipulacao_matriz_8h}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************/}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_dados_fixos_8h}{DadosFixos.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_manipulacao_matriz_8h_adcb0ba4e03efa11ba299b4373e0f78bd}{LibertarMemoria}}(\mbox{\hyperlink{struct_matriz}{Matriz}}*\ inicio);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ \mbox{\hyperlink{_manipulacao_matriz_8h_a5f09d57e081e0e91be94f806729ce368}{CriarElemento}}(\textcolor{keywordtype}{int}\ inteiro);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00034\ \mbox{\hyperlink{struct_matriz}{Matriz}}*\ \mbox{\hyperlink{_manipulacao_matriz_8h_ab3342d15b96db24bd02aea5e222f367d}{AtribuirMatriz}}(\textcolor{keywordtype}{int}\ linhas,\ \textcolor{keywordtype}{int}\ colunas,\ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ inicio);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00043\ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ \mbox{\hyperlink{_manipulacao_matriz_8h_ab27bd3234cbc3ffaeea3f73cfcbb5c26}{InserirElemento}}(\mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ inicio,\ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ nova,\ \textcolor{keywordtype}{bool}\ novaLinha);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00053\ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ \mbox{\hyperlink{_manipulacao_matriz_8h_a453e232ff1e554bfcb5a501c4c610352}{AlterarElemento}}(\mbox{\hyperlink{struct_matriz}{Matriz}}*\ matriz,\ \textcolor{keywordtype}{int}\ coluna,\ \textcolor{keywordtype}{int}\ linha,\ \textcolor{keywordtype}{int}\ novoInteiro);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_manipulacao_matriz_8h_ae09178592a69dc9976938dc875e0eda5}{AdicionarLinha}}(\mbox{\hyperlink{struct_matriz}{Matriz}}*\ matriz,\ \textcolor{keywordtype}{int}\ posicao,\ \textcolor{keywordtype}{int}\ valores[],\ \textcolor{keywordtype}{int}\ tamanho);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_manipulacao_matriz_8h_a5942565351f0cbe320713dffee215b49}{AdicionarColunas}}(\mbox{\hyperlink{struct_matriz}{Matriz}}*\ matriz,\ \textcolor{keywordtype}{int}\ posicao,\ \textcolor{keywordtype}{int}\ valores[],\ \textcolor{keywordtype}{int}\ tamanho);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_manipulacao_matriz_8h_ae828890e64e3de2d92e3a9904c784b51}{RemoverLinha}}(\mbox{\hyperlink{struct_matriz}{Matriz}}*\ matriz,\ \textcolor{keywordtype}{int}\ linha);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_manipulacao_matriz_8h_ab77626cd2d0d99533f34538f7c77a3af}{RemoverColuna}}(\mbox{\hyperlink{struct_matriz}{Matriz}}*\ matriz,\ \textcolor{keywordtype}{int}\ posicao);}
+
+\end{DoxyCode}

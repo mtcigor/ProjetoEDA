@@ -59,7 +59,8 @@ Elemento* AlterarElemento(Matriz* matriz, int coluna, int linha, int novoInteiro
 /// <param name="posicao">Número da posição a adicionar a nova linha</param>
 /// <param name="valores">Array com os valores para adicionar na matriz</param>
 /// <param name="tamanho">Tamanho do array</param>
-void AdicionarLinha(Matriz* matriz, int posicao, int valores[], int tamanho);
+/// <returns>Se devolver 0 a função encontrou um erro inesperado, 1 se executou tudo até o final</returns>
+int AdicionarLinha(Matriz* matriz, int posicao, int valores[], int tamanho);
 
 /// <summary>
 /// Função para adicionar uma coluna dado uma posição e um array de valores
@@ -68,18 +69,21 @@ void AdicionarLinha(Matriz* matriz, int posicao, int valores[], int tamanho);
 /// <param name="posicao">Número da posição a adicionar a nova linha</param>
 /// <param name="valores">Array com os valores para adicionar na matriz</param>
 /// <param name="tamanho">Tamanho do array</param>
-void AdicionarColunas(Matriz* matriz, int posicao, int valores[], int tamanho);
+/// <returns>Se devolver 0 a função encontrou um erro inesperado, 1 se executou tudo até o final</returns>
+int AdicionarColunas(Matriz* matriz, int posicao, int valores[], int tamanho);
 
 /// <summary>
 /// Função para remover uma linha selecionada na matriz
 /// </summary>
 /// <param name="matriz">Endereço da matriz</param>
 /// <param name="linha">Número da linha para remover</param>
-void RemoverLinha(Matriz* matriz, int linha);
+/// <returns>Se devolver 0 a função encontrou um erro inesperado, 1 se executou tudo até o final</returns>
+int RemoverLinha(Matriz* matriz, int linha);
 
 /// <summary>
 /// Função para remover uma coluna selecionada na matriz
 /// </summary>
 /// <param name="matriz">Endereço da matriz</param>
 /// <param name="posicao">Número da coluna para remover</param>
-void RemoverColuna(Matriz* matriz, int posicao);
+/// <returns>Se devolver 0 a função encontrou um erro inesperado, 1 se executou tudo até o final</returns>
+int RemoverColuna(Matriz* matriz, int posicao);

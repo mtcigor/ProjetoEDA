@@ -1,0 +1,79 @@
+\doxysection{Referência ao ficheiro Mostrar\+Matriz\+Lib/\+Mostrar\+Matriz.h}
+\hypertarget{_mostrar_matriz_8h}{}\label{_mostrar_matriz_8h}\index{MostrarMatrizLib/MostrarMatriz.h@{MostrarMatrizLib/MostrarMatriz.h}}
+
+
+Header com as funções da biblioteca Mostrar\+Matriz.  
+
+
+{\ttfamily \#include "{}Dados\+Fixos.\+h"{}}\newline
+\doxysubsubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_mostrar_matriz_8h_acc539d3999f15a441bfa51c43fcf7fc7}{Listagem\+Tabular}} (\mbox{\hyperlink{struct_matriz}{Matriz}} \texorpdfstring{$\ast$}{*}matriz)
+\begin{DoxyCompactList}\small\item\em Função para mostrar na consola em forma de tabela a matriz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Header com as funções da biblioteca Mostrar\+Matriz. 
+
+\begin{DoxyAuthor}{Autor}
+Igor \href{mailto:a27977@alunos.ipca.pt}{\texttt{ a27977@alunos.\+ipca.\+pt}} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Data}
+March 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{_mostrar_matriz_8h_acc539d3999f15a441bfa51c43fcf7fc7}\label{_mostrar_matriz_8h_acc539d3999f15a441bfa51c43fcf7fc7} 
+\index{MostrarMatriz.h@{MostrarMatriz.h}!ListagemTabular@{ListagemTabular}}
+\index{ListagemTabular@{ListagemTabular}!MostrarMatriz.h@{MostrarMatriz.h}}
+\doxysubsubsection{\texorpdfstring{ListagemTabular()}{ListagemTabular()}}
+{\footnotesize\ttfamily void Listagem\+Tabular (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matriz}{Matriz}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
+
+
+
+Função para mostrar na consola em forma de tabela a matriz. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em matriz} & Endereço da matriz\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{if}\ (matriz\ ==\ NULL)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Matriz\ inválida.\(\backslash\)n"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Linha\ superior\ da\ tabela}}
+\DoxyCodeLine{00026\ \ \ \ \ printf(\textcolor{stringliteral}{"{}+"{}});}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ matriz-\/>\mbox{\hyperlink{struct_matriz_a6e5e0e3b5fc330fbe6ea8d83657e0ee5}{colunas}};\ c++)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/+"{}});}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{//\ Conteúdo\ da\ matriz}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ l\ =\ 0;\ l\ <\ matriz-\/>\mbox{\hyperlink{struct_matriz_a7494a64ea1a954b0e68a0d7c5354d08f}{linhas}};\ l++)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}|"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ matriz-\/>\mbox{\hyperlink{struct_matriz_a6e5e0e3b5fc330fbe6ea8d83657e0ee5}{colunas}};\ c++)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ elemento\ =\ \mbox{\hyperlink{_operacoes_matriz_8c_a9d66f4f8445071bac3df578707b02d05}{ObterElemento}}(matriz,\ l,\ c);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%\ 3d\ |"{}},\ elemento-\/>\mbox{\hyperlink{struct_elemento_matriz_ae06f1f810b53da692bdb5727c3e82bee}{inteiro}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Linha\ separadora\ entre\ as\ linhas\ da\ matriz}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}+"{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ c\ =\ 0;\ c\ <\ matriz-\/>\mbox{\hyperlink{struct_matriz_a6e5e0e3b5fc330fbe6ea8d83657e0ee5}{colunas}};\ c++)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/+"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \}}
+
+\end{DoxyCode}
+
+
+Referências \mbox{\hyperlink{struct_matriz_a6e5e0e3b5fc330fbe6ea8d83657e0ee5}{Matriz\+::colunas}}, \mbox{\hyperlink{struct_elemento_matriz_ae06f1f810b53da692bdb5727c3e82bee}{Elemento\+Matriz\+::inteiro}}, \mbox{\hyperlink{struct_matriz_a7494a64ea1a954b0e68a0d7c5354d08f}{Matriz\+::linhas}} e \mbox{\hyperlink{_operacoes_matriz_8c_a9d66f4f8445071bac3df578707b02d05}{Obter\+Elemento()}}.
+

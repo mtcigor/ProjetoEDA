@@ -1,0 +1,163 @@
+\doxysection{Referência ao ficheiro Carregamento\+Matriz\+Lib/\+Carregamento\+Matriz.h}
+\hypertarget{_carregamento_matriz_8h}{}\label{_carregamento_matriz_8h}\index{CarregamentoMatrizLib/CarregamentoMatriz.h@{CarregamentoMatrizLib/CarregamentoMatriz.h}}
+{\ttfamily \#include "{}Dados\+Fixos.\+h"{}}\newline
+\doxysubsubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_matriz}{Matriz}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_carregamento_matriz_8h_aa9af6cf828862620583719ffbc2ebe7e}{Carregar\+Matriz}} (char nome\+Ficheiro\mbox{[}\mbox{\hyperlink{_dados_fixos_8h_a88d01ddf43f88c9d027750afc7574bce}{TAMANHO\+\_\+\+NOME\+\_\+\+FICHEIRO}}\mbox{]})
+\begin{DoxyCompactList}\small\item\em Função para carregar os dados para a matriz onde as linhas e colunas são iguais. \end{DoxyCompactList}\item 
+int \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_carregamento_matriz_8h_a6c2c3284039edf19041539189d142c35}{Matriz\+Para\+Array\+Bidimensional}} (\mbox{\hyperlink{struct_matriz}{Matriz}} \texorpdfstring{$\ast$}{*}matriz)
+\begin{DoxyCompactList}\small\item\em Função para preencher uma arra bidimensional com os inteiros da matriz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{_carregamento_matriz_8h_aa9af6cf828862620583719ffbc2ebe7e}\label{_carregamento_matriz_8h_aa9af6cf828862620583719ffbc2ebe7e} 
+\index{CarregamentoMatriz.h@{CarregamentoMatriz.h}!CarregarMatriz@{CarregarMatriz}}
+\index{CarregarMatriz@{CarregarMatriz}!CarregamentoMatriz.h@{CarregamentoMatriz.h}}
+\doxysubsubsection{\texorpdfstring{CarregarMatriz()}{CarregarMatriz()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_matriz}{Matriz}} \texorpdfstring{$\ast$}{*} Carregar\+Matriz (\begin{DoxyParamCaption}\item[{char}]{nome\+Ficheiro\mbox{[}\+TAMANHO\+\_\+\+NOME\+\_\+\+FICHEIRO\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Função para carregar os dados para a matriz onde as linhas e colunas são iguais. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em nome\+Ficheiro} & Nome do ficheiro\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Estrutura de dados \doxylink{struct_matriz}{Matriz} com o número de linhas e colunas e o início elemento da matriz
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Definir\ as\ variáveis}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{int}\ elementoInt;\ \textcolor{comment}{//\ Elemento\ da\ matriz}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{int}\ coluna\ =\ 0,\ linha\ =\ 0;\ \textcolor{comment}{//\ Contadores\ de\ colunas\ e\ linhas}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ inicioLinha\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Bool\ para\ controlar\ o\ primeiro\ fim\ de\ linha}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{bool}\ limColuna\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Bool\ para\ controlar\ o\ limite\ de\ colunas}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Inicializar\ o\ ficheiro}}
+\DoxyCodeLine{00028\ \ \ \ \ FILE*\ txtApontador\ =\ fopen(nomeFicheiro,\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (txtApontador\ ==\ NULL)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Inicializar\ elementos}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ elemento;}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ inicio\ =\ NULL;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Loop\ para\ percorrer\ a\ matriz\ do\ ficheiro\ de\ texto}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{while}\ (fscanf(txtApontador,\ \textcolor{stringliteral}{"{}\%d"{}},\ \&elementoInt)\ !=\ EOF)\ \{\ \textcolor{comment}{//\ Elemento\ número\ inteiro}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ eol\ =\ fgetc(txtApontador);\textcolor{comment}{//\ Obtém\ o\ carácter\ ao\ lado\ do\ número}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fim\ de\ linha\ que\ insere\ o\ elemento,\ faz\ a\ contagem\ da\ coluna}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (eol\ !=\ \textcolor{charliteral}{';'})\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ elemento\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_a5f09d57e081e0e91be94f806729ce368}{CriarElemento}}(elementoInt);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ inicio\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_ab27bd3234cbc3ffaeea3f73cfcbb5c26}{InserirElemento}}(inicio,\ elemento,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (limColuna\ !=\ \textcolor{keyword}{true})\ coluna++;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ linha++;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Variáveis\ de\ controlo}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ inicioLinha\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ limColuna\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fim\ do\ ficheiro\ que\ insere\ o\ ultímo\ elemento\ da\ matriz}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (eol\ ==\ EOF)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ elemento\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_a5f09d57e081e0e91be94f806729ce368}{CriarElemento}}(elementoInt);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ inicio\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_ab27bd3234cbc3ffaeea3f73cfcbb5c26}{InserirElemento}}(inicio,\ elemento,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ linha++;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Elemento\ seguinte\ não\ primeiro\ da\ linha\ nova}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (inicioLinha\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ elemento\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_a5f09d57e081e0e91be94f806729ce368}{CriarElemento}}(elementoInt);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ inicio\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_ab27bd3234cbc3ffaeea3f73cfcbb5c26}{InserirElemento}}(inicio,\ elemento,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (limColuna\ !=\ \textcolor{keyword}{true})\ coluna++;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Elemento\ seguinte\ primeiro\ da\ linha\ nova}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (inicioLinha\ ==\ \textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ elemento\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_a5f09d57e081e0e91be94f806729ce368}{CriarElemento}}(elementoInt);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ inicio\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_ab27bd3234cbc3ffaeea3f73cfcbb5c26}{InserirElemento}}(inicio,\ elemento,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ inicioLinha\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{struct_matriz}{Matriz}}*\ matriz\ =\ \mbox{\hyperlink{_manipulacao_matriz_8c_ab3342d15b96db24bd02aea5e222f367d}{AtribuirMatriz}}(linha,\ coluna,\ inicio);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ matriz;}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}
+
+
+Referências \mbox{\hyperlink{_manipulacao_matriz_8c_ab3342d15b96db24bd02aea5e222f367d}{Atribuir\+Matriz()}}, \mbox{\hyperlink{_manipulacao_matriz_8c_a5f09d57e081e0e91be94f806729ce368}{Criar\+Elemento()}} e \mbox{\hyperlink{_manipulacao_matriz_8c_ab27bd3234cbc3ffaeea3f73cfcbb5c26}{Inserir\+Elemento()}}.
+
+\Hypertarget{_carregamento_matriz_8h_a6c2c3284039edf19041539189d142c35}\label{_carregamento_matriz_8h_a6c2c3284039edf19041539189d142c35} 
+\index{CarregamentoMatriz.h@{CarregamentoMatriz.h}!MatrizParaArrayBidimensional@{MatrizParaArrayBidimensional}}
+\index{MatrizParaArrayBidimensional@{MatrizParaArrayBidimensional}!CarregamentoMatriz.h@{CarregamentoMatriz.h}}
+\doxysubsubsection{\texorpdfstring{MatrizParaArrayBidimensional()}{MatrizParaArrayBidimensional()}}
+{\footnotesize\ttfamily int \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Matriz\+Para\+Array\+Bidimensional (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_matriz}{Matriz}} \texorpdfstring{$\ast$}{*}}]{matriz }\end{DoxyParamCaption})}
+
+
+
+Função para preencher uma arra bidimensional com os inteiros da matriz. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em matriz} & Endereço da matriz\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Endereço do primeiro elemento da array bidimensional
+\end{DoxyReturn}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Se\ a\ matriz\ é\ nula}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (matriz\ ==\ NULL)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Endereço\ da\ matriz\ inválido.\(\backslash\)n"{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ linhas\ =\ matriz-\/>\mbox{\hyperlink{struct_matriz_a7494a64ea1a954b0e68a0d7c5354d08f}{linhas}};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{int}\ colunas\ =\ matriz-\/>\mbox{\hyperlink{struct_matriz_a6e5e0e3b5fc330fbe6ea8d83657e0ee5}{colunas}};}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ Aloca\ memória\ para\ o\ array\ bidimensional}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{int}**\ array\ =\ (\textcolor{keywordtype}{int}**)malloc(linhas\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}*));}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (array\ ==\ NULL)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ ao\ alocar\ memória\ para\ o\ array\ bidimensional.\(\backslash\)n"{}});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ linhas;\ i++)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ array[i]\ =\ (\textcolor{keywordtype}{int}*)malloc(colunas\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (array[i]\ ==\ NULL)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ ao\ alocar\ memória\ para\ a\ linha\ \%d\ do\ array\ bidimensional.\(\backslash\)n"{}},\ i);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Liberar\ memória\ já\ alocada}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ i;\ j++)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ free(array[j]);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ free(array);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//\ Preenche\ o\ array\ bidimensional\ com\ os\ valores\ da\ matriz}}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{struct_elemento_matriz}{Elemento}}*\ elemento\ =\ matriz-\/>\mbox{\hyperlink{struct_matriz_ab6b3e3faf04b0df06f96062c8307deb4}{inicio}};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ linhas;\ i++)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ colunas;\ j++)\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ array[i][j]\ =\ elemento-\/>\mbox{\hyperlink{struct_elemento_matriz_ae06f1f810b53da692bdb5727c3e82bee}{inteiro}};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ elemento\ =\ elemento-\/>\mbox{\hyperlink{struct_elemento_matriz_a893361e7144766eccb06127fe7545ab3}{prox}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (elemento\ ==\ NULL)\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ array;}
+\DoxyCodeLine{00095\ \}}
+
+\end{DoxyCode}
+
+
+Referências \mbox{\hyperlink{struct_matriz_a6e5e0e3b5fc330fbe6ea8d83657e0ee5}{Matriz\+::colunas}}, \mbox{\hyperlink{struct_matriz_ab6b3e3faf04b0df06f96062c8307deb4}{Matriz\+::inicio}}, \mbox{\hyperlink{struct_elemento_matriz_ae06f1f810b53da692bdb5727c3e82bee}{Elemento\+Matriz\+::inteiro}}, \mbox{\hyperlink{struct_matriz_a7494a64ea1a954b0e68a0d7c5354d08f}{Matriz\+::linhas}} e \mbox{\hyperlink{struct_elemento_matriz_a893361e7144766eccb06127fe7545ab3}{Elemento\+Matriz\+::prox}}.
+

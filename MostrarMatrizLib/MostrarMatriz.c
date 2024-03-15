@@ -1,8 +1,8 @@
 /*****************************************************************//**
  * \file   MostrarMatriz.c
- * \brief  
+ * \brief  Funções para mostrar o output na consola
  * 
- * \author mtcig
+ * \author Igor a27977@alunos.ipca.pt
  * \date   March 2024
  *********************************************************************/
 
@@ -21,13 +21,15 @@ void ListagemTabular(Matriz* matriz) {
         printf("Matriz inválida.\n");
         return;
     }
-    //Linha superior da tabela
+
+    // Linha superior da tabela
     printf("+");
     for (int c = 0; c < matriz->colunas; c++) {
         printf("-----+");
     }
     printf("\n");
-    //Conteúdo da matriz
+
+    // Conteúdo da matriz
     for (int l = 0; l < matriz->linhas; l++) {
         printf("|");
         for (int c = 0; c < matriz->colunas; c++) {
@@ -35,7 +37,7 @@ void ListagemTabular(Matriz* matriz) {
             printf("% 3d |", elemento->inteiro);
         }
         printf("\n");
-        //Linha separadora entre as linhas da matriz
+        // Linha separadora entre as linhas da matriz
         printf("+");
         for (int c = 0; c < matriz->colunas; c++) {
             printf("-----+");
